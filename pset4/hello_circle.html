@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello Circle</title>
+</head>
+
+<body>
+
+    <canvas id="canvas" width="600" height="600"></canvas>
+
+    <script>
+       
+        const canvas = document.getElementById("canvas");
+
+        
+        const ctx = canvas.getContext("2d");
+
+        
+        ctx.beginPath();
+
+        ctx.arc(
+            300,            
+            300,            
+            20,             
+            0,              
+            Math.PI * 2,    
+            false
+        );
+
+        
+        ctx.fillStyle = "blue";
+
+        
+        ctx.fill();
+    </script>
+
+</body>
+
+</html>
