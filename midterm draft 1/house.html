@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> House Drawing</title>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+const w = canvas.width;
+const h = canvas.height;
+
+// coordinates 
+const roof = [
+    [w * 0.2, h * 0.4],
+    [w * 0.5, h * 0.1],
+    [w * 0.8, h * 0.4]
+];
+
+const house = [
+    [w * 0.2, h * 0.4],
+    [w * 0.8, h * 0.4],
+    [w * 0.8, h * 0.9],
+    [w * 0.2, h * 0.9]
+];
+
+
+ctx.beginPath();
+ctx.moveTo(roof[0][0], roof[0][1]);
+ctx.lineTo(roof[1][0], roof[1][1]);
+ctx.lineTo(roof[2][0], roof[2][1]);
+ctx.stroke();
+
+
+ctx.beginPath();
+ctx.moveTo(house[0][0], house[0][1]);
+ctx.lineTo(house[1][0], house[1][1]);
+ctx.lineTo(house[2][0], house[2][1]);
+ctx.lineTo(house[3][0], house[3][1]);
+ctx.closePath();
+ctx.stroke();
+
+
+ctx.strokeRect(w * 0.44, h * 0.7,
+               w * 0.12, h * 0.2);
+
+// draw windows
+ctx.strokeRect(w * 0.28, h * 0.52,
+               w * 0.1, h * 0.1);
+
+ctx.strokeRect(w * 0.62, h * 0.52,
+               w * 0.1, h * 0.1);
+
+</script>
+</body>
+</html>
