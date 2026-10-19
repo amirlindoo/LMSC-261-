@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animated House Drawing</title>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+const w = canvas.width;
+const h = canvas.height;
+
+// function to draw a house
+function drawHouse(x, y, scale) {
+
+    const houseWidth = w * 0.2 * scale;
+    const houseHeight = h * 0.2 * scale;
+
+    // draw roof
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + houseWidth / 2, y - houseHeight / 2);
+    ctx.lineTo(x + houseWidth, y);
+    ctx.stroke();
+
+    // draw house body
+    ctx.strokeRect(x, y, houseWidth, houseHeight);
+
+    // draw door
+    ctx.strokeRect(
+        x + houseWidth * 0.4,
+        y + houseHeight * 0.5,
+        houseWidth * 0.2,
+        houseHeight * 0.5
+    );
+
+    // draw left window
+    ctx.strokeRect(
+        x + houseWidth * 0.15,
+        y + houseHeight * 0.2,
+        houseWidth * 0.2,
+        houseHeight * 0.2
+    );
+
+    // draw right window
+    ctx.strokeRect(
+        x + houseWidth * 0.65,
+        y + houseHeight * 0.2,
+        houseWidth * 0.2,
+        houseHeight * 0.2
+    );
+}
+
+// create houses with different sizes
+const numHouses = 5;
+const houseScales = [];
+
+for (let i = 0; i < numHouses; i++) {
+    houseScales.push(0.5 + Math.random() * 0.4);
+}
+
+// animation function
+let isBlack = true;
+
+function animateHouses() {
+
+    // clear and repaint background
+    ctx.fillStyle = "lightblue";
+    ctx.fillRect(0, 0, w, h);
+
+    // change line color
+    if (isBlack) {
+        ctx.strokeStyle = "black";
+    } else {
+        ctx.strokeStyle = "white";
+    }
+
+    // draw all houses
+    for (let i = 0; i < numHouses; i++) {
+
+        const x = (w * (i + 0.2)) / numHouses;
+        const y = h * 0.5;
+        const scale = houseScales[i];
+
+        drawHouse(x, y, scale);
+    }
+
+    // switch color for next frame
+    isBlack = !isBlack;
+}
+
+// start animation
+animateHouses();
+setInterval(animateHouses, 500);
+
+</script>
+</body>
+</html>
